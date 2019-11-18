@@ -18,13 +18,11 @@ public class MainController {
     private CSVQueries csvQueries;
 
     @RequestMapping(value="sheet", method = RequestMethod.GET)
-    @ResponseBody
     public String welcome(){
-        return "sheetAp works";
+        return "sqlInputForm";
     }
 
     @RequestMapping(value="sheet", method = RequestMethod.POST)
-    @ResponseBody
     public String getQueryResult(){
         //here pout logic of reading queries from input box and generate response
         return "there should be query result";
