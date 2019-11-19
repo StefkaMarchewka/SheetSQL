@@ -7,11 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
 
 
 @Controller
@@ -20,6 +15,8 @@ public class MainController {
     private FileReader fileReader;
     @Autowired
     private CSVQueries csvQueries;
+
+
 
     @RequestMapping(value="sheet", method = RequestMethod.GET)
     public String welcome(){
@@ -54,6 +51,8 @@ public class MainController {
 //                String valueToFind = argsList.get(7);
 //                printResults(csvQueries.getRowByChosenColumnValue(data, column, valueToFind));
 //            }
+
+
 ////                else {
 ////                    List<String> columns = new ArrayList<>();
 ////                    columns.add("city");
