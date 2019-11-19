@@ -1,8 +1,8 @@
 package com.codecool.sheetSQL.controllers;
 
 
-import com.codecool.sheetSQL.dao.CSVQueries;
-import com.codecool.sheetSQL.dao.FileReader;
+import com.codecool.sheetSQL.repository.CSVQueries;
+import com.codecool.sheetSQL.repository.FileReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +27,7 @@ public class MainController {
     public String getQueryResult(){
         //here pout logic of reading queries from input box and generate response
         //bla
+        //call service and give him user input
         return "there should be query result";
     }
 

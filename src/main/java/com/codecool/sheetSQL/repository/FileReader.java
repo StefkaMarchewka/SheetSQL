@@ -1,4 +1,4 @@
-package com.codecool.sheetSQL.dao;
+package com.codecool.sheetSQL.repository;
 
 import org.springframework.stereotype.Component;
 

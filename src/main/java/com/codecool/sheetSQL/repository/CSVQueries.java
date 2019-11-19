@@ -1,4 +1,4 @@
-package com.codecool.sheetSQL.dao;
+package com.codecool.sheetSQL.repository;
 
 import org.springframework.stereotype.Component;
 
@@ -84,7 +84,7 @@ public class CSVQueries {
         return result;
     }
 
-    //sth doesnt work here
+//    //sth doesnt work here
     private String getNthColumns(String[] arr, List<Integer> chosenColumns){
         StringBuilder sb = new StringBuilder();
         List<String> arrAsList = Arrays.asList(arr);
@@ -99,17 +99,17 @@ public class CSVQueries {
         return sb.toString();
     }
 
-    //this method seems to work best but it returns 10 streams instead of 2 ???
-    public List<String> getNamesWithFlatMap(List<String> data, String name) throws IOException {
-        List<String> streamList =
-                data.stream()
-                        .map(x -> x.split(","))
-                        .filter(x -> x[0].equals(name))
-                        .flatMap(Arrays::stream)
-                        .collect(Collectors.toList());
-
-        return streamList;
-    }
+//    //this method seems to work best but it returns 10 streams instead of 2 ???
+//    public List<String> getNamesWithFlatMap(List<String> data, String name) throws IOException {
+//        List<String> streamList =
+//                data.stream()
+//                        .map(x -> x.split(","))
+//                        .filter(x -> x[0].equals(name))
+//                        .flatMap(Arrays::stream)
+//                        .collect(Collectors.toList());
+//
+//        return streamList;
+//    }
 
     public void getChosenName(List<String> data, String name) throws IOException {
         Stream<String> dataStream = Files.lines(Paths.get("src/main/resources/csv_test.csv"));
