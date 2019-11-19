@@ -24,8 +24,4 @@ public class MainController {
         //call service and give him user input
         return "there should be query result";
     }
-
-
-
-
 }
