@@ -65,8 +65,8 @@ class SheetsQuickstart {
     public static void main(String... args) throws Exception {
         // Build a new authorized API client service.
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
-        final String spreadsheetId = "1X-r_0CNq9C1TgCdHNoo5VgX_kANzEQ2uQ0L3S-kkEKA";
-        final String range = "Class Data!A2:E";
+        final String spreadsheetId = "1BsMOw5kNwCf3dOzofvlhjNhem-AaolgdLVKmOgcQhq0";
+        final String range = "Arkusz1!A2:E";
         Sheets service = new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
                 .setApplicationName(APPLICATION_NAME)
                 .build();
@@ -83,6 +83,7 @@ class SheetsQuickstart {
                 // Print columns A and E, which correspond to indices 0 and 4.
                 System.out.printf("%s, %s\n", row.get(0), row.get(4));
             }
+
         }
     }
 }
