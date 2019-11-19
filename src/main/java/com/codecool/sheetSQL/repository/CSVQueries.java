@@ -29,16 +29,7 @@ public class CSVQueries {
                 .collect(Collectors.toList());
     }
 
-    public List<String> getNamesList(List<String> data, String name) throws IOException {
-        List<String> streamList =
-                data.stream()
-                        .map(x -> x.split(","))
-                        .filter(x -> x[0].equals(name))
-                        .map(x -> String.join(" ", x))
-                        .collect(Collectors.toList());
 
-        return streamList;
-    }
 
     public String countResults(List<String> data, String columnName, String valueToFind){
         String[] headers = getTableHeaders(data).split(",");
@@ -67,49 +58,39 @@ public class CSVQueries {
         return resultList;
     }
 
-    public List<String> getChosenColumnsFromRow(List<String> data, List<String> chosenColumns){
-       List<Integer> chosenColumnsIndexes = new ArrayList<>();
-        String[] headers = getTableHeaders(data).split(",");
-        int columnIndex = 0;
-        for (int i = 0; i <chosenColumns.size() ; i++) {
-            columnIndex = findColumnIndex(headers, chosenColumns.get(i));
-            chosenColumnsIndexes.add(columnIndex);
-        }
-
-        List<String> result = data.stream()
-                .map(row -> row.split(","))
-                .map(arr -> getNthColumns(arr, chosenColumnsIndexes))
-                .collect(Collectors.toList());
-
-        return result;
-    }
+//    public List<String> getChosenColumnsFromRow(List<String> data, List<String> chosenColumns){
+//       List<Integer> chosenColumnsIndexes = new ArrayList<>();
+//        String[] headers = getTableHeaders(data).split(",");
+//        int columnIndex = 0;
+//        for (int i = 0; i <chosenColumns.size() ; i++) {
+//            columnIndex = findColumnIndex(headers, chosenColumns.get(i));
+//            chosenColumnsIndexes.add(columnIndex);
+//        }
+//
+//        List<String> result = data.stream()
+//                .map(row -> row.split(","))
+//                .map(arr -> getNthColumns(arr, chosenColumnsIndexes))
+//                .collect(Collectors.toList());
+//
+//        return result;
+//    }
 
 //    //sth doesnt work here
-    private String getNthColumns(String[] arr, List<Integer> chosenColumns){
-        StringBuilder sb = new StringBuilder();
-        List<String> arrAsList = Arrays.asList(arr);
-
-        for (int i = 0; i < arrAsList.size(); i++) {
-            for (int j = 0; j < chosenColumns.size(); j++) {
-                sb.append(arrAsList.get(chosenColumns.get(j)));
-            }
-
-        }
-        //sb.append(oneColumnContent);
-        return sb.toString();
-    }
-
-//    //this method seems to work best but it returns 10 streams instead of 2 ???
-//    public List<String> getNamesWithFlatMap(List<String> data, String name) throws IOException {
-//        List<String> streamList =
-//                data.stream()
-//                        .map(x -> x.split(","))
-//                        .filter(x -> x[0].equals(name))
-//                        .flatMap(Arrays::stream)
-//                        .collect(Collectors.toList());
+//    private String getNthColumns(String[] arr, List<Integer> chosenColumns){
+//        StringBuilder sb = new StringBuilder();
+//        List<String> arrAsList = Arrays.asList(arr);
 //
-//        return streamList;
+//        for (int i = 0; i < arrAsList.size(); i++) {
+//            for (int j = 0; j < chosenColumns.size(); j++) {
+//                sb.append(arrAsList.get(chosenColumns.get(j)));
+//            }
+//
+//        }
+//        //sb.append(oneColumnContent);
+//        return sb.toString();
 //    }
+
+
 
     public void getChosenName(List<String> data, String name) throws IOException {
         Stream<String> dataStream = Files.lines(Paths.get("src/main/resources/csv_test.csv"));
