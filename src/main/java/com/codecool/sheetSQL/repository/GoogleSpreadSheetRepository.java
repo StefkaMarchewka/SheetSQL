@@ -1,6 +1,5 @@
 package com.codecool.sheetSQL.repository;
 
-import com.codecool.sheetSQL.model.UserData;
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInstalledApp;
 import com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver;
@@ -14,7 +13,6 @@ import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.sheets.v4.Sheets;
 import com.google.api.services.sheets.v4.SheetsScopes;
 import com.google.api.services.sheets.v4.model.ValueRange;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.FileNotFoundException;
@@ -29,7 +27,7 @@ public class GoogleSpreadSheetRepository implements DataReaderInterface{
     private static final String APPLICATION_NAME = "Google Sheets API Java Quickstart";
     private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
     private static final String TOKENS_DIRECTORY_PATH = "tokens";
-    private UserData userData;
+
 
     /**
      * Global instance of the scopes required by this quickstart.
@@ -38,25 +36,22 @@ public class GoogleSpreadSheetRepository implements DataReaderInterface{
     private static final List<String> SCOPES = Collections.singletonList(SheetsScopes.SPREADSHEETS_READONLY);
     private static final String CREDENTIALS_FILE_PATH = "/credentials.json";
 
-    @Autowired
-    public GoogleSpreadSheetRepository(UserData userData){
-        this.userData = userData;
+    public GoogleSpreadSheetRepository(){
     }
 
 
-    public List<List<Object>> getDataFromSpreadSheet() throws Exception{
+    public List<List<Object>> getDataFromSpreadSheet(String spreadsheetId, String range) throws Exception{
         // Build a new authorized API client service.
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
-        String spreadsheetId = userData.getSpreadsheetId();
-        String range = userData.getRange();
         Sheets service = new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
                 .setApplicationName(APPLICATION_NAME)
                 .build();
+        System.out.println("build");
         ValueRange response = service.spreadsheets().values()
                 .get(spreadsheetId, range)
                 .execute();
+        System.out.println("execute");
         List<List<Object>> values = response.getValues();
-
         return values;
     }
 
