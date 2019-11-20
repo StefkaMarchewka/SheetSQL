@@ -1,8 +1,12 @@
 package com.codecool.sheetSQL.service;
 
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class AllRowsWhereConditionReaderImpl implements AllRowsWhereConditionReader, DataProcessingHelper {
     @Override
     public List<String> getAllColumnsWhere(List<String> data, String columnName, String valueToFind) {
@@ -16,5 +20,14 @@ public class AllRowsWhereConditionReaderImpl implements AllRowsWhereConditionRea
                         .map(array -> String.join(" ", array))
                         .collect(Collectors.toList());
         return resultList;
+    }
+
+    @Override
+    public List<String> process(List<String> data) {
+        return null;
+    }
+
+    public List<String> process(){
+        return null;
     }
 }

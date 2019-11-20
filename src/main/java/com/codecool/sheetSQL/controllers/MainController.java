@@ -2,6 +2,7 @@ package com.codecool.sheetSQL.controllers;
 
 
 import com.codecool.sheetSQL.repository.GoogleSpreadSheetRepository;
+import com.codecool.sheetSQL.service.ReadableProviderService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -32,11 +33,14 @@ public class MainController {
             for (List row : spreadSheetContent) {
                 // Print columns A and E, which correspond to indices 0 and 4.
                 System.out.printf("%s, %s\n", row.get(0), row.get(1));
+
             }
         }catch (Exception exc){
             System.out.println("Exception in GoogleSpreadSheetRepository");
             exc.printStackTrace();
         }
+
+
 
 
 
