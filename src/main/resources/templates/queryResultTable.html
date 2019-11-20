@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Query Result Table</title>
+</head>
+<body>
+<table th:each="row : ${resultList}">
+    <tr th:text="${row}">
+    </tr>
+</table>
+
+
+</body>
+</html>
