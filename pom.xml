@@ -41,12 +41,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.google.apis/google-api-services-sheets -->
-        <dependency>
-            <groupId>com.google.apis</groupId>
-            <artifactId>google-api-services-sheets</artifactId>
-            <version>v4-rev1-1.21.0</version>
-        </dependency>
+
 
         <!-- https://mvnrepository.com/artifact/com.google.api-client/google-api-client-extensions -->
 <!--        <dependency>-->
@@ -62,17 +57,18 @@
 <!--            <version>2.2.1.RELEASE</version>-->
 <!--        </dependency>-->
 
+<!--         <dependency>-->
+<!--              <groupId>org.springframework.boot</groupId>-->
+<!--              <artifactId>spring-boot-starter-web</artifactId>-->
+<!--              <exclusions>-->
+<!--                  <exclusion>-->
+<!--                      <groupId>org.springframework.boot</groupId>-->
+<!--                      <artifactId>spring-boot-starter-tomcat</artifactId>-->
+<!--                  </exclusion>-->
+<!--              </exclusions>-->
+<!--          </dependency>-->
 
-        <!---  <dependency>
-              <groupId>org.springframework.boot</groupId>
-              <artifactId>spring-boot-starter-web</artifactId>
-              <exclusions>
-                  <exclusion>
-                      <groupId>org.springframework.boot</groupId>
-                      <artifactId>spring-boot-starter-tomcat</artifactId>
-                  </exclusion>
-              </exclusions>
-          </dependency> -->
+
         <!-- https://mvnrepository.com/artifact/com.google.oauth-client/google-oauth-client-jetty -->
         <dependency>
             <groupId>com.google.oauth-client</groupId>
@@ -85,6 +81,17 @@
             <artifactId>google-api-client</artifactId>
             <version>1.22.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.google.apis</groupId>
+            <artifactId>google-api-services-sheets</artifactId>
+            <version>v4-rev1-1.21.0</version>
+        </dependency>
+        <!--        &lt;!&ndash; https://mvnrepository.com/artifact/com.google.http-client/google-http-client &ndash;&gt;-->
+        <dependency>
+            <groupId>com.google.http-client</groupId>
+            <artifactId>google-http-client</artifactId>
+            <version>1.16.0-rc</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -92,12 +99,6 @@
         </dependency>
 
 
-        <!--        &lt;!&ndash; https://mvnrepository.com/artifact/com.google.http-client/google-http-client &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>com.google.http-client</groupId>-->
-<!--            <artifactId>google-http-client</artifactId>-->
-<!--            <version>1.16.0-rc</version>-->
-<!--        </dependency>-->
 
 
 
