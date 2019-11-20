@@ -5,11 +5,11 @@
     <title>Query Result Table</title>
 </head>
 <body>
-<tr th:each="row : ${resultList}">
-    <td>
-        row
-    </td>
-</tr>
+<table th:each="row : ${resultList}">
+    <tr th:text="${row}">
+    </tr>
+</table>
+
 
 </body>
 </html>
