@@ -3,7 +3,7 @@ package com.codecool.sheetSQL.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class SelectAllWhereService implements SelectAllWhereInterface, DataProcessingHelper {
+public class AllRowsWhereConditionReaderImpl implements AllRowsWhereConditionReader, DataProcessingHelper {
     @Override
     public List<String> getAllColumnsWhere(List<String> data, String columnName, String valueToFind) {
         String[] headers = getTableHeaders(data).split(",");
