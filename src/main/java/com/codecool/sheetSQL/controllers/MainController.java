@@ -29,10 +29,12 @@ public class MainController {
         GoogleSpreadSheetRepository spreadSheetRepository = new GoogleSpreadSheetRepository();
         try{
             List<List<Object>> spreadSheetContent = spreadSheetRepository.getDataFromSpreadSheet(spreadSheetID, sheet);
-            for (List row : spreadSheetContent) {
-                // Print columns A and E, which correspond to indices 0 and 4.
-                System.out.printf("%s, %s\n", row.get(0), row.get(1));
-            }
+//            for (List row : spreadSheetContent) {
+//                // Print columns A and E, which correspond to indices 0 and 4.
+//                System.out.printf("%s, %s\n", row.get(0), row.get(1));
+//            }
+            spreadSheetContent.stream().forEach(System.out::println);
+
         }catch (Exception exc){
             System.out.println("Exception in GoogleSpreadSheetRepository");
             exc.printStackTrace();
