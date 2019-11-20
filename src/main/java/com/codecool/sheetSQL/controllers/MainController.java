@@ -12,6 +12,7 @@ import java.util.List;
 
 @Controller
 public class MainController {
+    //RedableProviderService readable;
 
     @GetMapping(value="/sheet")
     public String welcome(){
@@ -23,12 +24,12 @@ public class MainController {
         String query = request.getParameter("query");
         String spreadSheetID = request.getParameter("spreadSheetID");
         String sheet = request.getParameter("sheet");
-        System.out.println(query + " " + spreadSheetID + " " + sheet);
 
         GoogleSpreadSheetRepository spreadSheetRepository = new GoogleSpreadSheetRepository();
         try{
             List<List<Object>> spreadSheetContent = spreadSheetRepository.getDataFromSpreadSheet(spreadSheetID, sheet);
-           // spreadSheetContent.stream().forEach(System.out::println);
+            //Redable reader = readable.getDataReader(query);
+            //reader.process(List<String> data);
 
             model.addAttribute("resultList", spreadSheetContent);
 
