@@ -2,7 +2,6 @@ package com.codecool.sheetSQL.controllers;
 
 
 import com.codecool.sheetSQL.repository.GoogleSpreadSheetRepository;
-import com.codecool.sheetSQL.service.ReadableProviderService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
