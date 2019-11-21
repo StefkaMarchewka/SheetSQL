@@ -19,9 +19,9 @@ public class ProcesableProviderService {
 
     public List<String> getDataReader(String query, List<String> data) throws IOException {
         String[] queryWords = query.split("\\s");
-        if (queryWords[0].toLowerCase().equals("select") && queryWords[1].toLowerCase().equals("*") ){
+        if (queryWords[1].toLowerCase().equals("*") ){
             return processor.getWholeTable(data);
-        }else if (queryWords[0].toLowerCase().equals("select") && !queryWords[1].toLowerCase().equals("*") ){
+        }else if (!(queryWords[1].toLowerCase().equals("*"))){
             return processor.getContentOfChosenColumn(data, queryWords[1]);
         }
 
