@@ -19,11 +19,17 @@ public class ProcesableProviderService {
 
     public List<String> getDataReader(String query, List<String> data) throws IOException {
         String[] queryWords = query.split("\\s");
-        if (queryWords[0].toLowerCase().equals("select") && queryWords[1].toLowerCase().equals("*") ){
+        //select * from table
+        if (query.matches("^select\\s\\*\\s[a-zA-Z\\s]+$") ){
             return processor.getWholeTable(data);
-        }else if (queryWords[0].toLowerCase().equals("select") && !queryWords[1].toLowerCase().equals("*") ){
+            //select someColumns from table
+        }else if (query.matches("^select\\s[a-zA-Z]+\\s[a-zA-Z\\s]+$") ){
             return processor.getContentOfChosenColumn(data, queryWords[1]);
+            //select someColumns from table where column like something
+        }else if (query.matches("^select\\s[a-zA-Z]+\\swhere\\s[a-zA-Z]\\slike[a-zA-Z0-9]+$") ){
+            return processor.getAllColumnsWhere(data, queryWords[1], queryWords[7]);
         }
+
 
         else throw new IOException("Query error, search for typos");
 
