@@ -28,16 +28,16 @@ public class MainController {
         GoogleSpreadSheetRepository spreadSheetRepository = new GoogleSpreadSheetRepository();
         try{
             List<List<Object>> spreadSheetContent = spreadSheetRepository.getDataFromSpreadSheet(spreadSheetID, sheet);
+
             //Redable reader = readable.getDataReader(query);
             //reader.process(List<String> data);
 
             model.addAttribute("resultList", spreadSheetContent);
 
+
         }catch (Exception exc){
             System.out.println("Exception in GoogleSpreadSheetRepository");
             exc.printStackTrace();
         }
-
-        return "queryResultTable";
     }
 }
