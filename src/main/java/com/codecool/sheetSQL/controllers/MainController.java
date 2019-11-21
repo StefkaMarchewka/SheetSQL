@@ -2,17 +2,24 @@ package com.codecool.sheetSQL.controllers;
 
 
 import com.codecool.sheetSQL.repository.GoogleSpreadSheetRepository;
+import com.codecool.sheetSQL.service.Procesable;
+import com.codecool.sheetSQL.service.ProcesableProviderService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 
 @Controller
 public class MainController {
-    //RedableProviderService readable;
+    @Autowired
+    ProcesableProviderService processorService;
+
+
 
     @GetMapping(value="/sheet")
     public String welcome(){
@@ -28,16 +35,16 @@ public class MainController {
         GoogleSpreadSheetRepository spreadSheetRepository = new GoogleSpreadSheetRepository();
         try{
             List<List<Object>> spreadSheetContent = spreadSheetRepository.getDataFromSpreadSheet(spreadSheetID, sheet);
-
-            //Redable reader = readable.getDataReader(query);
-            //reader.process(List<String> data);
-
-            model.addAttribute("resultList", spreadSheetContent);
+            ArrayList casted = new ArrayList();
+            spreadSheetContent.forEach(element -> element.forEach(particle -> casted.add(particle.toString())));
+            List processedData = processorService.getDataReader(query, casted);
+            model.addAttribute("resultList", processedData);
 
 
         }catch (Exception exc){
             System.out.println("Exception in GoogleSpreadSheetRepository");
             exc.printStackTrace();
         }
+        return "queryResultTable";
     }
 }
