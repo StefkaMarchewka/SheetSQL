@@ -21,6 +21,10 @@ public interface DataProcessingHelper {
         return sb.toString();
     }
 
+    default String getNColumn(String[] arr, int index){
+        return arr[index];
+    }
+
     default int findColumnIndex(String[] array, String value) throws IndexOutOfBoundsException{
         int result = 0;
         for (int i = 0; i < array.length-1; i++) {

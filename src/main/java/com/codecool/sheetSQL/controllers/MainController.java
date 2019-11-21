@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Controller
@@ -35,9 +36,15 @@ public class MainController {
         GoogleSpreadSheetRepository spreadSheetRepository = new GoogleSpreadSheetRepository();
         try{
             List<List<Object>> spreadSheetContent = spreadSheetRepository.getDataFromSpreadSheet(spreadSheetID, sheet);
-            ArrayList casted = new ArrayList();
-            spreadSheetContent.forEach(element -> element.forEach(particle -> casted.add(particle.toString())));
-            List processedData = processorService.getDataReader(query, casted);
+
+            List<List<String>> casted = castListElements(spreadSheetContent);
+
+            List<String> dataToPass = casted.stream()
+                    .map(x-> String.join(" ", x))
+                    .collect(Collectors.toList());
+
+
+            List processedData = processorService.getDataReader(query, dataToPass);
             model.addAttribute("resultList", processedData);
 
 
@@ -46,5 +53,20 @@ public class MainController {
             exc.printStackTrace();
         }
         return "queryResultTable";
+    }
+
+    public List<List<String>> castListElements(List<List<Object>> listToCast){
+       List<List<String>> castedLists = new ArrayList<>();
+        for (int i = 0; i < listToCast.size(); i++) {
+            List<Object> listToProcess = listToCast.get(i);
+            List<String> listToAdd = new ArrayList<>();
+
+            for (Object o: listToProcess) {
+                String castedWord = o.toString();
+                listToAdd.add(castedWord);
+            }
+            castedLists.add(listToAdd);
+        }
+        return castedLists;
     }
 }
