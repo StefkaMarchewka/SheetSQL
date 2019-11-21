@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Controller
@@ -35,9 +36,14 @@ public class MainController {
         GoogleSpreadSheetRepository spreadSheetRepository = new GoogleSpreadSheetRepository();
         try{
             List<List<Object>> spreadSheetContent = spreadSheetRepository.getDataFromSpreadSheet(spreadSheetID, sheet);
-            ArrayList casted = new ArrayList();
+
+            List<String> casted = new ArrayList();
             spreadSheetContent.forEach(element -> element.forEach(particle -> casted.add(particle.toString())));
-            List processedData = processorService.getDataReader(query, casted);
+
+            List<String> dataToPass = casted.stream()
+                    .map(x-> String.join(" ", x))
+                    .collect(Collectors.toList());
+            List processedData = processorService.getDataReader(query, dataToPass);
             model.addAttribute("resultList", processedData);
 
 

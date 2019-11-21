@@ -45,5 +45,14 @@ public class DataFunctionApplyer implements Procesable, DataProcessingHelper {
         return resultList;
     }
 
+    public List<String> getContentOfChosenColumn(List<String> data, String columnName){
+        String[] headers = getTableHeaders(data).split(",");
+        int columnIndex = findColumnIndex(headers, columnName);
+
+        return data.stream()
+                .map(row -> row.split(","))
+                .map(arr -> getNColumn(arr, columnIndex))
+                .collect(Collectors.toList());
+    }
 
 }
