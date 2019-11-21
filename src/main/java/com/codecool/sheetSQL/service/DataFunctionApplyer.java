@@ -49,10 +49,12 @@ public class DataFunctionApplyer implements Procesable, DataProcessingHelper {
         String[] headers = getTableHeaders(data).split(",");
         int columnIndex = findColumnIndex(headers, columnName);
 
-        return data.stream()
+        List<String> result = data.stream()
                 .map(row -> row.split(","))
                 .map(arr -> getNColumn(arr, columnIndex))
                 .collect(Collectors.toList());
+
+        return result;
     }
 
 }
