@@ -21,7 +21,9 @@ public interface DataProcessingHelper {
         return sb.toString();
     }
 
-    default String getNColumn(String[] arr, int index){
+    default String getNColumn(String[] arr, int index)
+    {
+        System.out.println(arr[index]);
         return arr[index];
     }
 

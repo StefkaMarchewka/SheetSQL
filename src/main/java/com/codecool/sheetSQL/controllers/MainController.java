@@ -40,13 +40,12 @@ public class MainController {
             List<List<String>> casted = castListElements(spreadSheetContent);
 
             List<String> dataToPass = casted.stream()
-                    .map(x-> String.join(" ", x))
+                    .map(x-> String.join(",", x))
                     .collect(Collectors.toList());
 
 
             List processedData = processorService.getDataReader(query, dataToPass);
             model.addAttribute("resultList", processedData);
-
 
         }catch (Exception exc){
             System.out.println("Exception in GoogleSpreadSheetRepository");
