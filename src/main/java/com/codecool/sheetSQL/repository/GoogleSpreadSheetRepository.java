@@ -82,6 +82,7 @@ public class GoogleSpreadSheetRepository implements DataReaderInterface{
                 .setAccessType("offline")
                 .build();
         LocalServerReceiver receiver = new LocalServerReceiver.Builder().setPort(portNum).build();
+
         return new AuthorizationCodeInstalledApp(flow, receiver).authorize("user");
     }
 }
