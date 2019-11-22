@@ -19,14 +19,15 @@ public class ProcesableProviderService {
 
     public List<String> getDataReader(String query, List<String> data) throws IOException {
         String[] queryWords = query.split("\\s");
+        Arrays.asList(queryWords).forEach(System.out::println);
         //select * from table
-        if (query.matches("^select\\s\\*\\s[a-zA-Z\\s]+$") ){
+        if (query.matches("^select\\s\\*\\sfrom\\s[a-zA-Z]+$") ){
             return processor.getWholeTable(data);
             //select someColumns from table
-        }else if (query.matches("^select\\s[a-zA-Z]+\\s[a-zA-Z\\s]+$") ){
+        }else if (query.matches("^select\\s[a-zA-Z]+\\sfrom\\s[a-zA-Z0-9]+$") ){
             return processor.getContentOfChosenColumn(data, queryWords[1]);
             //select someColumns from table where column like something
-        }else if (query.matches("^select\\s[a-zA-Z*,]+\\swhere\\s[a-zA-Z]\\slike[a-zA-Z0-9]+$") ){
+        }else if (query.matches("^select\\s[a-zA-Z\\*]+\\sfrom\\s[a-zA-Z]+\\swhere\\s[a-zA-Z]+\\slike\\s[a-zA-Z0-9]+$") ){
             return processor.getAllColumnsWhere(data, queryWords[1], queryWords[7]);
         }
 
