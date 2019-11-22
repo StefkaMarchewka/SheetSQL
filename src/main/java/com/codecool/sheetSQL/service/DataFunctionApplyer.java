@@ -18,8 +18,8 @@ public class DataFunctionApplyer implements Procesable, DataProcessingHelper {
         List<Integer> chosenColumnsIndexes = new ArrayList<>();
         String[] headers = getTableHeaders(data).split(",");
         int columnIndex = 0;
-        for (int i = 0; i <chosenColumns.size() ; i++) {
-            columnIndex = findColumnIndex(headers, chosenColumns.get(i));
+        for (String chosenColumn : chosenColumns) {
+            columnIndex = findColumnIndex(headers, chosenColumn);
             chosenColumnsIndexes.add(columnIndex);
         }
 
@@ -54,6 +54,23 @@ public class DataFunctionApplyer implements Procesable, DataProcessingHelper {
                 .map(arr -> getNColumn(arr, columnIndex))
                 .collect(Collectors.toList());
 
+        return result;
+    }
+
+
+    public List<String> countResults(List<String> data, String columnName, String valueToFind){
+        String[] headers = getTableHeaders(data).split(",");
+        int columnIndex = findColumnIndex(headers, columnName);
+        List<String> result = new ArrayList<>();
+
+        long countResult =
+                data.stream()
+                        .map(row -> row.split(","))
+                        .filter(array -> array[columnIndex].equals(valueToFind))
+                        .map(array -> String.join(" ", array))
+                        .count();
+
+        result.add(String.valueOf(countResult));
         return result;
     }
 
