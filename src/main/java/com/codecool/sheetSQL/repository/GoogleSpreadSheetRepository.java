@@ -67,7 +67,7 @@ public class GoogleSpreadSheetRepository implements DataReaderInterface{
 
         String portString = System.getenv("$PORT");
         System.out.println(portString);
-        int portNum = Integer.valueOf(portString);
+        int portNum = Integer.parseInt(portString);
         System.out.println(portNum);
         InputStream in = GoogleSpreadSheetRepository.class.getResourceAsStream(CREDENTIALS_FILE_PATH);
         if (in == null) {
