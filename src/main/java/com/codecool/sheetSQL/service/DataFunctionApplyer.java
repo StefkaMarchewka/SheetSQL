@@ -74,4 +74,17 @@ public class DataFunctionApplyer implements Procesable, DataProcessingHelper {
         return result;
     }
 
+    public List<String> getRowByChosenColumnValue(List<String> data, String columnName, String valueToFind){
+        String[] headers = getTableHeaders(data).split(",");
+        int columnIndex = findColumnIndex(headers, columnName);
+
+        List<String> resultList =
+                data.stream()
+                        .map(row -> row.split(","))
+                        .filter(array -> array[columnIndex].equals(valueToFind))
+                        .map(array -> String.join(" ", array))
+                        .collect(Collectors.toList());
+        return resultList;
+    }
+
 }
