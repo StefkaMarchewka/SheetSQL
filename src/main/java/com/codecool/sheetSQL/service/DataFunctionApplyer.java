@@ -57,4 +57,21 @@ public class DataFunctionApplyer implements Procesable, DataProcessingHelper {
         return result;
     }
 
+
+    public List<String> countResults(List<String> data, String columnName, String valueToFind){
+        String[] headers = getTableHeaders(data).split(",");
+        int columnIndex = findColumnIndex(headers, columnName);
+        List<String> result = new ArrayList<>();
+
+        long countResult =
+                data.stream()
+                        .map(row -> row.split(","))
+                        .filter(array -> array[columnIndex].equals(valueToFind))
+                        .map(array -> String.join(" ", array))
+                        .count();
+
+        result.add(String.valueOf(countResult));
+        return result;
+    }
+
 }
