@@ -18,8 +18,8 @@ public class DataFunctionApplyer implements Procesable, DataProcessingHelper {
         List<Integer> chosenColumnsIndexes = new ArrayList<>();
         String[] headers = getTableHeaders(data).split(",");
         int columnIndex = 0;
-        for (int i = 0; i <chosenColumns.size() ; i++) {
-            columnIndex = findColumnIndex(headers, chosenColumns.get(i));
+        for (String chosenColumn : chosenColumns) {
+            columnIndex = findColumnIndex(headers, chosenColumn);
             chosenColumnsIndexes.add(columnIndex);
         }
 
