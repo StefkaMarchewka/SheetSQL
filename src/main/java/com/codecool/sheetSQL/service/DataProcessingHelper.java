@@ -29,12 +29,13 @@ public interface DataProcessingHelper {
 
     default int findColumnIndex(String[] array, String value) throws IndexOutOfBoundsException{
         int result = 0;
-        for (int i = 0; i < array.length-1; i++) {
+        for (int i = 0; i < array.length; i++) {
             if(array[i].equals(value)){
                 result = i;
+                return result;
             }
         }
-        return result;
+        throw new IndexOutOfBoundsException("array was empty");
     }
 
 
