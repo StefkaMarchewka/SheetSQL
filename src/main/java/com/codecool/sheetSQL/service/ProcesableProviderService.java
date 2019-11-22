@@ -29,9 +29,9 @@ public class ProcesableProviderService {
             //select someColumns from table where column like something
         }else if (query.matches("^select\\s[a-zA-Z\\*]+\\sfrom\\s[a-zA-Z]+\\swhere\\s[a-zA-Z]+\\slike\\s[a-zA-Z0-9]+$") ){
             return processor.getAllColumnsWhere(data, queryWords[1], queryWords[7]);
-        }else if(query.matches("count")){
+        }else if(query.matches("^select\\scount\\([a-zA-Z]+\\)\\sfrom\\s[a-zA-Z]+\\swhere\\s[a-zA-Z]+\\slike\\s[a-zA-Z0-9]+$")){
             String columnName = getColumnNameFromArgs(query);
-            return processor.countResults(data, columnName, );
+            return processor.countResults(data, columnName, queryWords[7]);
         }
 
 
