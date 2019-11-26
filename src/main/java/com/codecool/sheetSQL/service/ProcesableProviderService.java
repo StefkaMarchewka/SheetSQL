@@ -15,25 +15,21 @@ public class ProcesableProviderService {
     public List<String> getDataReader(String query, List<String> data) throws IOException {
         String[] queryWords = query.split("\\s");
         Arrays.asList(queryWords).forEach(System.out::println);
+            //select * from table where column like sth
         if(query.matches("^select\\s\\*\\sfrom\\s[a-zA-Z]+\\swhere\\s[a-zA-Z]+\\slike\\s[a-zA-Z0-9]+$")) {
             return processor.getRowByChosenColumnValue(data, queryWords[5], queryWords[queryWords.length-1]);
             //select * from table
-        } else if (query.matches("^select\\s\\*\\sfrom\\s[a-zA-Z]+$") ){
+        }else if (query.matches("^select\\s\\*\\sfrom\\s[a-zA-Z]+$") ){
             return processor.getWholeTable(data);
             //select column from table
         }else if (query.matches("^select\\s[a-zA-Z]+\\sfrom\\s[a-zA-Z0-9]+$") ){
             return processor.getContentOfChosenColumn(data, queryWords[1]);
-            //select someColumns from table
+            //select column1,column2 from table
         }else if (query.matches("^select\\s[a-zA-Z*,]+\\sfrom\\s[a-zA-Z]+$") ){
             List<String> chosenColumns = getChosenColumnsFromQuery(queryWords[1]);
             return processor.getChosenColumnsFromRow(data, chosenColumns);
-            //not working: select someColumns from table where column like something
-        }
-//        else if (query.matches("^select\\s[a-zA-Z*]+\\sfrom\\s[a-zA-Z]+\\swhere\\s[a-zA-Z]+\\slike\\s[a-zA-Z0-9]+$") ) {
-//            return processor.getAllColumnsWhere(data, queryWords[1], queryWords[7]);
-//        }
-             //select count
-        else if(query.matches("^select\\scount\\([a-zA-Z]+\\)\\sfrom\\s[a-zA-Z]+\\swhere\\s[a-zA-Z]+\\slike\\s[a-zA-Z0-9]+$")){
+            //select count
+        }else if(query.matches("^select\\scount\\([a-zA-Z]+\\)\\sfrom\\s[a-zA-Z]+\\swhere\\s[a-zA-Z]+\\slike\\s[a-zA-Z0-9]+$")){
             String columnName = getColumnNameFromArgs(query);
             return processor.countResults(data, columnName, queryWords[7]);
         }

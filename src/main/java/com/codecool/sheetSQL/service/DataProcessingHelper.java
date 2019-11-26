@@ -7,7 +7,7 @@ public interface DataProcessingHelper {
 
     default String getTableHeaders(List<String> data){
         return data.stream()
-                .findFirst() //this it terminal operation
+                .findFirst()
                 .orElse("");
     }
 

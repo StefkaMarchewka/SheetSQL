@@ -32,19 +32,6 @@ public class DataFunctionApplyer implements Procesable, DataProcessingHelper {
     }
 
     @Override
-    public List<String> getAllColumnsWhere(List<String> data, String columnName, String valueToFind) {
-        String[] headers = getTableHeaders(data).split(",");
-        int columnIndex = findColumnIndex(headers, columnName);
-
-        List<String> resultList =
-                data.stream()
-                        .map(row -> row.split(","))
-                        .filter(array -> array[columnIndex].equals(valueToFind))
-                        .map(array -> String.join(" ", array))
-                        .collect(Collectors.toList());
-        return resultList;
-    }
-
     public List<String> getContentOfChosenColumn(List<String> data, String columnName){
         String[] headers = getTableHeaders(data).split(",");
         int columnIndex = findColumnIndex(headers, columnName);
@@ -57,7 +44,7 @@ public class DataFunctionApplyer implements Procesable, DataProcessingHelper {
         return result;
     }
 
-
+    @Override
     public List<String> countResults(List<String> data, String columnName, String valueToFind){
         String[] headers = getTableHeaders(data).split(",");
         int columnIndex = findColumnIndex(headers, columnName);
@@ -74,6 +61,7 @@ public class DataFunctionApplyer implements Procesable, DataProcessingHelper {
         return result;
     }
 
+    @Override
     public List<String> getRowByChosenColumnValue(List<String> data, String columnName, String valueToFind){
         String[] headers = getTableHeaders(data).split(",");
         int columnIndex = findColumnIndex(headers, columnName);
