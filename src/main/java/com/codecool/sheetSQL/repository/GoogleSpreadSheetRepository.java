@@ -63,7 +63,6 @@ public class GoogleSpreadSheetRepository implements DataReaderInterface{
      */
     private static Credential getCredentials(final NetHttpTransport HTTP_TRANSPORT) throws Exception {
         // Load client secrets.
-
         InputStream in = GoogleSpreadSheetRepository.class.getResourceAsStream(CREDENTIALS_FILE_PATH);
         if (in == null) {
             throw new FileNotFoundException("Resource not found: " + CREDENTIALS_FILE_PATH);
