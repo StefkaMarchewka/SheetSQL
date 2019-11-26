@@ -13,7 +13,6 @@ import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.sheets.v4.Sheets;
 import com.google.api.services.sheets.v4.SheetsScopes;
 import com.google.api.services.sheets.v4.model.ValueRange;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.io.FileNotFoundException;
@@ -64,11 +63,6 @@ public class GoogleSpreadSheetRepository implements DataReaderInterface{
      */
     private static Credential getCredentials(final NetHttpTransport HTTP_TRANSPORT) throws Exception {
         // Load client secrets.
-
-        String portString = System.getenv("$PORT");
-        System.out.println(portString);
-        int portNum = Integer.parseInt(portString);
-        System.out.println(portNum);
         InputStream in = GoogleSpreadSheetRepository.class.getResourceAsStream(CREDENTIALS_FILE_PATH);
         if (in == null) {
             throw new FileNotFoundException("Resource not found: " + CREDENTIALS_FILE_PATH);
@@ -81,7 +75,7 @@ public class GoogleSpreadSheetRepository implements DataReaderInterface{
                 .setDataStoreFactory(new FileDataStoreFactory(new java.io.File(TOKENS_DIRECTORY_PATH)))
                 .setAccessType("offline")
                 .build();
-        LocalServerReceiver receiver = new LocalServerReceiver.Builder().setPort(portNum).build();
+        LocalServerReceiver receiver = new LocalServerReceiver.Builder().setPort(8888).build();
 
         return new AuthorizationCodeInstalledApp(flow, receiver).authorize("user");
     }
