@@ -9,4 +9,5 @@ public interface Procesable {
     List<String> getAllColumnsWhere(List<String> data, String columnName, String valueToFind);
     List<String> getContentOfChosenColumn(List<String> data, String columnName);
     List<String> countResults(List<String> data, String columnName, String valueToFind);
+    List<String> getRowByChosenColumnValue(List<String> data, String columnName, String valueToFind);
 }

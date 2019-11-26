@@ -65,10 +65,6 @@ public class GoogleSpreadSheetRepository implements DataReaderInterface{
     private static Credential getCredentials(final NetHttpTransport HTTP_TRANSPORT) throws Exception {
         // Load client secrets.
 
-//        String portString = System.getenv("$PORT");
-//        System.out.println(portString);
-//        int portNum = Integer.parseInt(portString);
-//        System.out.println(portNum);
         InputStream in = GoogleSpreadSheetRepository.class.getResourceAsStream(CREDENTIALS_FILE_PATH);
         if (in == null) {
             throw new FileNotFoundException("Resource not found: " + CREDENTIALS_FILE_PATH);
